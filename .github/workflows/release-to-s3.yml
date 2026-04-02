@@ -1,0 +1,27 @@
+name: Zip and Attach to Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  zip-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set variables
+        run: |
+          echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+          echo "VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+
+      - name: Create ZIP
+        run: |
+          zip -r ${REPO_NAME}-${VERSION}.zip . -x "*.git*"
+
+      - name: Upload ZIP to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${REPO_NAME}-${VERSION}.zip
