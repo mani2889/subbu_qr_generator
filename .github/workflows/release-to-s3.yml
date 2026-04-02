@@ -1,8 +1,12 @@
 name: Zip and Attach to Release
-
 on:
   release:
     types: [created]
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write
 
 jobs:
   zip-and-upload:
