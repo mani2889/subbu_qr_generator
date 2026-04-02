@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: subbu_qr_generator
+Version: 0.1.0
+Summary: A simple QR code generator with CLI support
+Author-email: Subramanian <subramani2889@gmail.com>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: qrcode[pil]>=7.4.2
+
+# QR Generator
+
+Simple QR code generator with CLI support.
+
+## Install
+pip install .
+
+## Usage
+qrgen "https://example.com" -o qr.png

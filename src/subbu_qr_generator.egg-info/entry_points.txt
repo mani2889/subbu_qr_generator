@@ -1,0 +1,2 @@
+[console_scripts]
+qrgen = qr_generator.cli:main
