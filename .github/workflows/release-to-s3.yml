@@ -25,7 +25,10 @@ jobs:
         run: |
           zip -r ${REPO_NAME}-${VERSION}.zip . -x "*.git*"
 
-      - name: Upload ZIP to Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ${REPO_NAME}-${VERSION}.zip
+      - name: Upload ZIP to Release (GH CLI)
+        run: |
+          echo "Uploading ${REPO_NAME}-${VERSION}.zip"
+          ls -la
+          gh release upload $VERSION ${REPO_NAME}-${VERSION}.zip --clobber
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
